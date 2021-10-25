@@ -22,4 +22,14 @@ async def ping(ctx):
     embed = discord.Embed(colour=discord.Colour(0x7ed321), description=":ping_pong: " + pingspeed + " ms")
     await ctx.send(embed=embed)
 
+@client.command()
+@commands.is_owner()
+async def dm(ctx, user: discord.Member, *args):
+    message = ""
+    for word in args:
+      message += word
+      message += " "
+    await user.send(f"{message}")
+    await ctx.message.delete()
+
 client.run(TOKEN)
